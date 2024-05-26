@@ -6,6 +6,7 @@ export default function AppRoutes() {
   return (
     <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/search/:searchTerm' element={<Home/>}></Route>
     </Routes>
   )
 }
