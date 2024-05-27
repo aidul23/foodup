@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import Search from "../../components/Search/Search";
+import Clock from "../../components/Clock/Clock";
 import Tags from "../../components/Tags/Tags";
 import Thumbnails from "../../components/Thumbnails/Thumbnails";
 import { getAllFood, getAllTags, search } from "../../services/foodService";
@@ -35,6 +36,7 @@ export default function Home() {
 
   return (
     <>
+      <Clock/>
       <Search />
       <Tags tags={tags} />
       <Thumbnails foods={foods} />

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./header.module.css";
+import Clock from "../Clock/Clock";
 
 export default function Header() {
   const user = {

@@ -8,3 +8,7 @@ export const search = async (searchTerm) =>
   );
 
 export const getAllTags = async () => sample_tags;
+
+export const getById = async (foodId) => {
+  return sample_foods.find(item => item.id === foodId);
+}
