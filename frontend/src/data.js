@@ -32,4 +32,45 @@ export const sample_foods = [
         imageUrl: 'chicken-biriyani.jpg',
         tags: ['Meal','Rice','Meat']
     },
-]
+    {
+        id: '4',
+        name: 'Mutton Biriyani',
+        cookTime: '20-22',
+        price: 15,
+        favorite: true,
+        origins: ['bangladesh'],
+        stars: 5,
+        imageUrl: 'mutton-biryani.jpg',
+        tags: ['Meal','Rice','Meat']
+    },
+    {
+        id: '5',
+        name: 'Beef Biriyani',
+        cookTime: '20-22',
+        price: 10,
+        favorite: true,
+        origins: ['bangladesh'],
+        stars: 5,
+        imageUrl: 'beef-biriyani.jpg',
+        tags: ['Meal','Rice','Meat']
+    },
+    {
+        id: '6',
+        name: ' Pizza Margherita',
+        cookTime: '10-12',
+        price: 7,
+        favorite: true,
+        origins: ['italy'],
+        stars: 5,
+        imageUrl: 'margherita-pizza.jpg',
+        tags: ['Meal','Pizza', 'Fastfood']
+    },
+];
+
+export const sample_tags = [
+    {name: 'All', count: 6},
+    {name: 'Biriyani', count: 3},
+    {name: 'Khichuri', count: 1},
+    {name: 'Rice', count: 1},
+    {name: 'Fastfood', count: 1},
+];
