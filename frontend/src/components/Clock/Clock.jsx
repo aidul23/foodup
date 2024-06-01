@@ -9,9 +9,9 @@ export default function Clock() {
       return "Kill your midnight hunger!"
     } else if(time > 6  && time <= 11) {
       return "Anything for fast your break?"
-    } else if(time > 11 && time <= 2) {
+    } else if(time > 11 && time <= 13) {
       return "Its lunch time! feed your belly"
-    } else if(time > 2 && time <= 7) {
+    } else if(time > 13 && time <= 18) {
       return "Snacks is all yours!"
     } else {
       return "Lets order a dinner for your partner!"

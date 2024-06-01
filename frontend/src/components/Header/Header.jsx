@@ -2,14 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./header.module.css";
 import Clock from "../Clock/Clock";
+import { useCart } from "../../hooks/useCart";
 
 export default function Header() {
+  const { cart } = useCart();
   const user = {
     name: "Aidul",
-  };
-
-  const cart = {
-    totalCount: 10,
   };
 
   const logout = () => {};
