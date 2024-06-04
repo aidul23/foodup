@@ -1,4 +1,4 @@
-export const sample_foods = [
+const sample_foods = [
   {
     id: "1",
     name: "Chicken Biriyani",
@@ -79,10 +79,12 @@ export const sample_foods = [
   },
 ];
 
-export const sample_tags = [
+const sample_tags = [
   { name: "All", count: 6 },
   { name: "Biriyani", count: 3 },
   { name: "Khichuri", count: 1 },
   { name: "Rice", count: 1 },
   { name: "Fastfood", count: 1 },
 ];
+
+module.exports = { sample_foods, sample_tags };
