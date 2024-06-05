@@ -49,7 +49,7 @@ const sample_foods = [
     origins: ["bangladesh"],
     stars: 5,
     imageUrl: "mutton-biryani.jpg",
-    tags: ["Meal", "Rice", "Meat"],
+    tags: ["Meal", "Rice", "Meat", "Biriyani"],
   },
   {
     id: "5",
@@ -87,4 +87,23 @@ const sample_tags = [
   { name: "Fastfood", count: 1 },
 ];
 
-module.exports = { sample_foods, sample_tags };
+const sample_users = [
+  {
+    id: 1,
+    email: "aidulislam@gmail.com",
+    password: "12345",
+    name: "Aidul Islam",
+    address: "Tampere, Finland",
+    isAdmin: false,
+  },
+  {
+    id: 1,
+    email: "sama@gmail.com",
+    password: "12345",
+    name: "Khadiza",
+    address: "Tampere, Finland",
+    isAdmin: false,
+  },
+];
+
+module.exports = { sample_foods, sample_tags, sample_users };

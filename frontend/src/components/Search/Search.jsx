@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./search.module.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Search() {
   const [term, setTerm] = useState("");
@@ -15,7 +15,7 @@ export default function Search() {
         type="text"
         placeholder="search your meal..."
         onChange={(e) => setTerm(e.target.value)}
-        onKeyUp={e => e.key === 'Enter' && search()}
+        onKeyUp={(e) => e.key === "Enter" && search()}
         defaultValue={term}
       />
       <button onClick={search}>Find</button>

@@ -1,14 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./header.module.css";
-import Clock from "../Clock/Clock";
 import { useCart } from "../../hooks/useCart";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Header() {
   const { cart } = useCart();
-  const user = {
-    name: "Aidul",
-  };
+  const {user} = useAuth(); 
 
   const logout = () => {};
 
