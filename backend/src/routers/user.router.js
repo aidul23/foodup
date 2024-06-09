@@ -1,23 +1,33 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
 const { sample_users } = require("../data");
+const handler = require("express-async-handler");
+const User = require("../models/user.model");
+const bcrypt = require("bcrypt");
 
 const router = Router();
 
-router.post("/login", (req, res) => {
-  const { email, password } = req.body;
+router.post(
+  "/login",
+  handler(async (req, res) => {
+    const { email, password } = req.body;
 
-  const user = sample_users.find(
-    (user) => user.email === email && user.password === password
-  );
+    const user = await User.findOne({ email });
 
-  if (user) {
-    res.send(generateToken(user));
-    return;
-  }
+    if (!user) {
+      return res.status(400).send("Username or password is invalid");
+    }
 
-  res.status(400).send("username or password is invalid");
-});
+    const passMatch = await bcrypt.compare(password, user.password);
+
+    if (user && passMatch) {
+      res.send(generateToken(user));
+      return;
+    }
+
+    res.status(400).send("username or password is invalid");
+  })
+);
 
 const generateToken = (user) => {
   const token = jwt.sign(
@@ -26,7 +36,7 @@ const generateToken = (user) => {
       email: user.email,
       isAdmin: user.isAdmin,
     },
-    "somerandomstring",
+    process.env.JWT_SECRET,
     {
       expiresIn: "30d",
     }

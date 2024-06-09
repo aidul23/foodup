@@ -2,6 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const foodRouter = require("./routers/food.router");
 const userRouter = require("./routers/user.router");
+const {dbconnect} = require("./config/database.config");
+require("dotenv").config();
+
+dbconnect();
 
 const app = express();
 

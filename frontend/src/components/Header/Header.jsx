@@ -6,9 +6,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export default function Header() {
   const { cart } = useCart();
-  const {user} = useAuth(); 
-
-  const logout = () => {};
+  const {user, logout} = useAuth(); 
 
   return (
     <header className={classes.header}>
