@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import NotFound from "../../components/NotFound/NotFound";
 import Price from '../../components/Price/Price';
 import Title from "../../components/Title/Title";
 import { useCart } from "../../hooks/useCart";
 import classes from './cart.module.css';
-import NotFound from "../../components/NotFound/NotFound";
 
 export default function Cart() {
   const { cart, removeFromCart, changeQuantity } = useCart();
@@ -19,7 +19,7 @@ export default function Cart() {
             {cart.items.map((item) => (
               <li key={item.food.id}>
                 <div>
-                  <img src={`/foods/${item.food.imageUrl}`} alt={item.food.name} />
+                  <img src={`${item.food.imageUrl}`} alt={item.food.name} />
                 </div>
                 <div>
                   <Link to={`/food/${item.food.id}`}>{item.food.name}</Link>

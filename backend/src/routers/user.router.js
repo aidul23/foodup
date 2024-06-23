@@ -29,6 +29,35 @@ router.post(
   })
 );
 
+router.post(
+  "/register",
+  handler(async (req, res) => {
+    const { name, email, password, address } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (user) {
+      res.status(400).send("User already exists, please login!");
+      return;
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const result = await User.create({
+      name,
+      email: email.toLowerCase(),
+      password: hashedPassword,
+      address,
+    });
+
+    if (!result) {
+      return res.status(400).send("Username or password is invalid");
+    }
+
+    res.send(generateToken(result));
+  })
+);
+
 const generateToken = (user) => {
   const token = jwt.sign(
     {

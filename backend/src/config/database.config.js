@@ -17,7 +17,7 @@ const dbconnect = async () => {
   try {
     mongoose.connect(process.env.MONGO_URL);
     //await seedUsers();
-    await seedFoods();
+    // await seedFoods();
     console.log("connect successfully---");
   } catch (error) {
     console.log(error);
