@@ -7,8 +7,9 @@ import App from "./App";
 import "./axiosConfig";
 import { AuthProvider } from "./hooks/useAuth";
 import CartProvider from "./hooks/useCart";
-import "./index.css";
 import { LoadingProvider } from "./hooks/useLoading";
+import "./index.css";
+require("./interceptors/authInterceptor");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

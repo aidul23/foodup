@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const foodRouter = require("./routers/food.router");
 const userRouter = require("./routers/user.router");
+const orderRouter = require("./routers/order.router");
 const {dbconnect} = require("./config/database.config");
 require("dotenv").config();
 
@@ -19,6 +20,7 @@ app.use(
 
 app.use("/api/foods", foodRouter);
 app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
 
 const PORT = 5000;
 
