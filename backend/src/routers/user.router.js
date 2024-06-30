@@ -4,6 +4,7 @@ const { sample_users } = require("../data");
 const handler = require("express-async-handler");
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
+const auth = require("../middlewares/auth.mid");
 
 const router = Router();
 
@@ -55,6 +56,47 @@ router.post(
     }
 
     res.send(generateToken(result));
+  })
+);
+
+router.put(
+  "/updateProfile",
+  auth,
+  handler(async (req, res) => {
+    const { name, address } = req.body;
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { name, address },
+      { new: true }
+    );
+
+    res.send(generateToken(user));
+  })
+);
+
+router.put(
+  "/changePassword",
+  auth,
+  handler(async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    const user = await UserModel.findById(req.user.id);
+
+    if (!user) {
+      res.status(BAD_REQUEST).send("Change Password Failed!");
+      return;
+    }
+
+    const equal = await bcrypt.compare(currentPassword, user.password);
+
+    if (!equal) {
+      res.status(BAD_REQUEST).send("Current Password Is Not Correct!");
+      return;
+    }
+
+    user.password = await bcrypt.hash(newPassword, PASSWORD_HASH_SALT_ROUNDS);
+    await user.save();
+
+    res.send();
   })
 );
 

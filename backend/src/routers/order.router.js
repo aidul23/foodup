@@ -2,6 +2,7 @@ const { Router } = require("express");
 const handler = require("express-async-handler");
 const authMid = require("../middlewares/auth.mid");
 const OrderModel = require("../models/order.model");
+const UserModel = require("../models/user.model");
 const OrderStatus = require("../constants/orderStatus");
 const router = Router();
 
@@ -28,13 +29,9 @@ router.put(
   "/pay",
   handler(async (req, res) => {
     const { paymentId } = req.body;
-    const order = await OrderModel.findOne({
-      user: req.user.id,
-      status: OrderStatus.NEW,
-    });
-
+    const order = await getNewOrderForCurrentUser(req);
     if (!order) {
-      res.status(400).send("Order not found!");
+      res.status(BAD_REQUEST).send("Order Not Found!");
       return;
     }
 
@@ -42,21 +39,48 @@ router.put(
     order.status = OrderStatus.PAYED;
     await order.save();
 
-    res.send(order._id);
+    console.log(order._id.toString());
+
+    res.send(order._id.toString());
+  })
+);
+
+router.get(
+  "/track/:orderId",
+  handler(async (req, res) => {
+    const { orderId } = req.params;
+    const user = await UserModel.findById(req.user.id);
+
+    const filter = {
+      _id: orderId,
+    };
+
+    if (!user.isAdmin) {
+      filter.user = user._id;
+    }
+
+    const order = await OrderModel.findOne(filter);
+    if (!order) res.status(501).send();
+
+    return res.send(order);
   })
 );
 
 router.get(
   "/newOrderForCurrentUser",
   handler(async (req, res) => {
-    const order = await OrderModel.findOne({
-      user: req.user.id,
-      status: OrderStatus.NEW,
-    });
-
+    const order = await getNewOrderForCurrentUser(req);
     if (order) res.send(order);
-    else res.status(400).send();
+    else res.status(BAD_REQUEST).send();
+
+    console.log(order._id.toString());
   })
 );
+
+const getNewOrderForCurrentUser = async (req) =>
+  await OrderModel.findOne({
+    user: req.user.id,
+    status: OrderStatus.NEW,
+  });
 
 module.exports = router;
