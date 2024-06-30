@@ -28,10 +28,11 @@ export default function CheckoutPage() {
   } = useForm();
 
   const submit = async (data) => {
-    if (order.address == null) {
-      toast.warning("Please select your location");
-      return;
-    }
+    // console.log(order);
+    // if (order.address == null) {
+    //   toast.warning("Please select your location");
+    //   return;
+    // }
 
     await createOrder({ ...order, name: user.name, address: data.address });
     navigate("/payment");

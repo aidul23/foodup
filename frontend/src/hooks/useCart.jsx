@@ -15,8 +15,8 @@ export default function CartProvider({ children }) {
   const [totalCount, setTotalCount] = useState(initCart.totalCount || 0);
 
   useEffect(() => {
-    const totalPrice = sum(cartItems?.map(item => item.price));
-    const totalCount = sum(cartItems?.map(item => item.quantity));
+    const totalPrice = sum(cartItems?.map((item) => item.price));
+    const totalCount = sum(cartItems?.map((item) => item.quantity));
 
     setTotalPrice(totalPrice);
     setTotalCount(totalCount);
@@ -36,7 +36,7 @@ export default function CartProvider({ children }) {
     return storedCart ? JSON.parse(storedCart) : EMPTY_CART;
   }
 
-  const sum = items => {
+  const sum = (items) => {
     return items?.reduce((prevVal, curVal) => prevVal + curVal, 0);
   };
 
@@ -71,6 +71,14 @@ export default function CartProvider({ children }) {
     }
   };
 
+  const clearCart = () => {
+    localStorage.removeItem(CART_KEY);
+    const { items, totalPrice, totalCount } = EMPTY_CART;
+    setCartItems(items);
+    setTotalPrice(totalPrice);
+    setTotalCount(totalCount);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -78,6 +86,7 @@ export default function CartProvider({ children }) {
         removeFromCart,
         changeQuantity,
         addToCart,
+        clearCart,
       }}
     >
       {children}
