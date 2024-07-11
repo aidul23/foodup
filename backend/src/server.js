@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require("express");
 const cors = require("cors");
 const foodRouter = require("./routers/food.router");
@@ -22,6 +23,14 @@ app.use("/api/foods", foodRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
 
+const publicFolder = path.join(__dirname,'public');
+
+app.use(express.static(publicFolder));
+
+app.get('*', (req,res) => {
+  const indexFilePath = path.join(publicFolder,'build/'+'index.html');
+  res.sendFile(indexFilePath);
+})
 const PORT = 5000;
 
 app.listen(PORT, () => {
