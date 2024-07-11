@@ -31,7 +31,7 @@ app.get('*', (req,res) => {
   const indexFilePath = path.join(publicFolder,'build/'+'index.html');
   res.sendFile(indexFilePath);
 })
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`listing on ${PORT}`);

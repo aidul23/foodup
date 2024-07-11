@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "cd backend && npm start",
+    "prebuild": "cd backend && npm install & cd frontend && npm install",
     "build": "cd frontend && npm run build",
     "postbuild": "xcopy /S /Y frontend\\build backend\\src\\public"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=18 <19"
+  },
   "devDependencies": {
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3"
