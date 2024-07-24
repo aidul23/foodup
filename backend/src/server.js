@@ -23,9 +23,9 @@ app.use(
 // app.use("/api/users", userRouter);
 // app.use("/api/orders", orderRouter);
 
-app.use(`${process.env.BASE_URL}/foods`, foodRouter);
-app.use(`${process.env.BASE_URL}/users`, userRouter);
-app.use(`${process.env.BASE_URL}/orders`, orderRouter);
+app.use(`/foods`, foodRouter);
+app.use(`/users`, userRouter);
+app.use(`/orders`, orderRouter);
 
 // const publicFolder = path.join(__dirname,'public');
 
