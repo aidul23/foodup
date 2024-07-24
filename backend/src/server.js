@@ -15,7 +15,8 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"],
+    origin: ["https://zippy-swan-6f36d1.netlify.app"],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   })
 );
 
