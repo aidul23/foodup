@@ -19,9 +19,13 @@ app.use(
   })
 );
 
-app.use("/api/foods", foodRouter);
-app.use("/api/users", userRouter);
-app.use("/api/orders", orderRouter);
+// app.use("/api/foods", foodRouter);
+// app.use("/api/users", userRouter);
+// app.use("/api/orders", orderRouter);
+
+app.use(`${process.env.BASE_URL}/foods`, foodRouter);
+app.use(`${process.env.BASE_URL}/users`, userRouter);
+app.use(`${process.env.BASE_URL}/orders`, orderRouter);
 
 const publicFolder = path.join(__dirname,'public');
 
