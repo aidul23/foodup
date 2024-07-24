@@ -23,7 +23,7 @@ app.use(
 // app.use("/api/users", userRouter);
 // app.use("/api/orders", orderRouter);
 
-app.use(`${process.env.BASE_URL}/foods`, foodRouter);
+app.use(`${process.env.BASE_URL}`, foodRouter);
 app.use(`${process.env.BASE_URL}/users`, userRouter);
 app.use(`${process.env.BASE_URL}/orders`, orderRouter);
 

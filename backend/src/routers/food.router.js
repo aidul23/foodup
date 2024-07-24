@@ -6,7 +6,7 @@ const handler = require("express-async-handler");
 const router = Router();
 
 router.get(
-  "/",
+  "/foods/",
   handler(async (req, res) => {
     const foods = await Food.find({});
     res.send(foods);
@@ -14,7 +14,7 @@ router.get(
 );
 
 router.get(
-  "/tags",
+  "/foods/tags",
   handler(async (req, res) => {
     const tags = await Food.aggregate([
       {
@@ -47,7 +47,7 @@ router.get(
 );
 
 router.get(
-  "/search/:searchTerm",
+  "/foods/search/:searchTerm",
   handler(async (req, res) => {
     const { searchTerm } = req.params;
     const searchRegex = new RegExp(searchTerm, "i");
@@ -59,7 +59,7 @@ router.get(
 );
 
 router.get(
-  "/tag/:tag",
+  "/foods/tag/:tag",
   handler(async (req, res) => {
     const { tag } = req.params;
     const taggedFood = await Food.find({ tags: tag });
@@ -69,7 +69,7 @@ router.get(
 );
 
 router.get(
-  "/:foodId",
+  "/foods/:foodId",
   handler(async (req, res) => {
     const { foodId } = req.params;
     const food = await Food.findById(foodId);
