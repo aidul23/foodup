@@ -27,14 +27,14 @@ app.use(`${process.env.BASE_URL}/foods`, foodRouter);
 app.use(`${process.env.BASE_URL}/users`, userRouter);
 app.use(`${process.env.BASE_URL}/orders`, orderRouter);
 
-const publicFolder = path.join(__dirname,'public');
+// const publicFolder = path.join(__dirname,'public');
 
 app.use(express.static(publicFolder));
 
-app.get('*', (req,res) => {
-  const indexFilePath = path.join(publicFolder,'index.html');
-  res.sendFile(indexFilePath);
-})
+// app.get('*', (req,res) => {
+//   const indexFilePath = path.join(publicFolder,'index.html');
+//   res.sendFile(indexFilePath);
+// })
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
