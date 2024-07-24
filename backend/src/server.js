@@ -29,7 +29,7 @@ app.use(`${process.env.BASE_URL}/orders`, orderRouter);
 
 // const publicFolder = path.join(__dirname,'public');
 
-app.use(express.static(publicFolder));
+// app.use(express.static(publicFolder));
 
 // app.get('*', (req,res) => {
 //   const indexFilePath = path.join(publicFolder,'index.html');
